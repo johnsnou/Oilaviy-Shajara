@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Xudoyberdiyevlar</title>
+<style>
+:root{--bg:#f7f2e8;--card:#fffdf8;--ink:#2a2923;--mute:#7b7568;--line:#c4b99f;--acc:#3f6f4a;--accb:#e3eddc;--red:#b4443a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1a17;--card:#262420;--ink:#eee8d8;--mute:#a59e8c;--line:#58523f;--acc:#8fc196;--accb:#2b3a2d;--red:#e07a6f;color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:Georgia,"Times New Roman",serif;font-weight:600}
+nav{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:10px 14px;flex-wrap:wrap}
+.brand{font-size:1.15rem;margin-right:auto;color:var(--acc)}
+nav a{color:var(--ink);text-decoration:none;padding:6px 12px;border-radius:20px;font-size:14px}
+nav a.on{background:var(--accb);color:var(--acc);font-weight:600}
+.wrap{max-width:1000px;margin:0 auto;padding:22px 16px 50px}
+.hero{text-align:center;padding:48px 16px;background:linear-gradient(160deg,var(--accb),var(--bg));border-radius:18px;border:1px solid var(--line)}
+.hero h1{font-size:clamp(2rem,7vw,3.2rem);margin:0 0 8px}
+.hero p{color:var(--mute);max-width:520px;margin:0 auto 20px;font-size:1.05rem}
+.stats{display:flex;gap:12px;margin:20px 0;flex-wrap:wrap}
+.stat{flex:1;min-width:100px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.stat b{display:block;font:600 2rem Georgia,serif;color:var(--acc)}
+.stat span{color:var(--mute);font-size:13px}
+h2.sec{font-size:1.5rem;margin:26px 0 12px}
+.btn,button{font:14px system-ui,sans-serif;padding:9px 16px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;text-decoration:none;display:inline-block}
+.btn.pri,button.pri{background:var(--acc);border-color:var(--acc);color:var(--card)}
+button.del{color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.mem{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer}
+.mem:hover,.card:hover{border-color:var(--acc)}
+.mem b{display:block;margin-top:8px}
+.sub{color:var(--mute);font-size:12.5px}
+.av{border-radius:50%;background:var(--accb);color:var(--acc);display:flex;align-items:center;justify-content:center;font:600 1.1em Georgia,serif;overflow:hidden;margin:0 auto;flex:none}
+.av img{width:100%;height:100%;object-fit:cover}
+input.s{width:100%;max-width:340px;margin-bottom:14px}
+.ph{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.ph figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer}
+.ph img{width:100%;height:150px;object-fit:cover;display:block}
+.ph figcaption{padding:6px 10px;font-size:13px;color:var(--mute);min-height:30px}
+.about p{max-width:680px;font-size:1.05rem}
+.tree{overflow-x:auto;padding:10px 0 30px}
+.tree ul{display:flex;justify-content:center;padding:20px 0 0;margin:0;position:relative;list-style:none}
+.tree>ul{width:max-content;margin:0 auto;padding-top:0}
+.tree li{position:relative;padding:20px 8px 0;text-align:center}
+.tree>ul>li{padding-top:0}
+.tree li::before,.tree li::after{content:"";position:absolute;top:0;right:50%;width:50%;height:20px;border-top:2px solid var(--line)}
+.tree li::after{right:auto;left:50%;border-left:2px solid var(--line)}
+.tree>ul>li::before,.tree>ul>li::after,.tree li:only-child::before,.tree li:only-child::after{display:none}
+.tree li:first-child::before,.tree li:last-child::after{border:0 none}
+.tree li:last-child::before{border-right:2px solid var(--line)}
+.tree ul ul::before{content:"";position:absolute;top:0;left:50%;height:20px;border-left:2px solid var(--line)}
+.unit{display:inline-flex;align-items:center;gap:6px}
+.amp{color:var(--mute);font-size:14px}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;min-width:100px;cursor:pointer;font-size:14.5px}
+.card .av{margin-bottom:4px}
+.empty{text-align:center;color:var(--mute);padding:40px 10px}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:20px}
+#dlg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;padding:16px;z-index:30}
+#dlg.on{display:flex}
+.box{background:var(--card);border-radius:16px;padding:18px;width:100%;max-width:400px;max-height:90vh;overflow:auto}
+.box h2{margin:0;font-size:1.25rem}
+.ptop{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.box img.big{width:100%;border-radius:10px;display:block}
+label{display:block;font-size:13px;color:var(--mute);margin-top:9px}
+input,textarea{width:100%;margin-top:3px;padding:9px;font:15px system-ui,sans-serif;border:1.5px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{display:inline-block;background:var(--accb);color:var(--acc);border-radius:14px;padding:2px 10px;margin:2px 4px 2px 0;font-size:13px;cursor:pointer}
+.rel{font-size:14px;margin-top:8px}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:20px;font-size:13px;z-index:40}
+#toast:empty{display:none}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="dlg" class=""></div>
+<div id="toast"></div>
+<script id="data" type="application/json">{"title":"Xudoyberdiyevlar","people":[{"id":"pmvup3dlt","name":"Rahmatillo","born":"1955","died":"","note":"farmer","parent":"pmvupn7zi","partner":"pmvup43qf"},{"id":"pmvup43qf","name":"Xadicha","born":"1955","died":"","note":"housewife","parent":null,"partner":"pmvup3dlt"},{"id":"pmvup51ba","name":"Zamira","born":"1975","died":"","note":"housewife","parent":"pmvup43qf","partner":"pmvup5w7q"},{"id":"pmvup5w7q","name":"Bahrom","born":"1974","died":"","note":"factory worker","parent":null,"partner":"pmvup51ba"},{"id":"pmvup6hya","name":"Gulnora","born":"1977","died":"","note":"housewife","parent":"pmvup43qf","partner":"pmvup7378"},{"id":"pmvup7378","name":"Mo'ydinjon","born":"1973","died":"","note":"gardener","parent":null,"partner":"pmvup6hya"},{"id":"pmvup7o9z","name":"Gulchehra","born":"1979","died":"","note":"sales assistant","parent":"pmvup43qf","partner":null},{"id":"pmvup8576","name":"Rustam","born":"1981","died":"","note":"electric","parent":"pmvup43qf","partner":"pmvup8nx8"},{"id":"pmvup8nx8","name":"Baxtigul","born":"1984","died":"","note":"chef","parent":null,"partner":"pmvup8576"},{"id":"pmvup9c5v","name":"Ikromjon","born":"1982","died":"","note":"driver","parent":"pmvup43qf","partner":"pmvup9tsr"},{"id":"pmvup9tsr","name":"Mohira","born":"1987","died":"","note":"dressmaker","parent":null,"partner":"pmvup9c5v"},{"id":"pmvupaazr","name":"Solijon","born":"1985","died":"","note":"builder","parent":"pmvup43qf","partner":"pmvupaxhd"},{"id":"pmvupaxhd","name":"Zarifa","born":"1992","died":"","note":"factory worker","parent":null,"partner":"pmvupaazr"},{"id":"pmvupbgt5","name":"Doniyor","born":"1987","died":"","note":"builder","parent":"pmvup43qf","partner":"pmvupbyjy"},{"id":"pmvupbyjy","name":"Mohigul","born":"1993","died":"","note":"housewife","parent":null,"partner":"pmvupbgt5"},{"id":"pmvupcela","name":"Zulfiya","born":"2000","died":"","note":"","parent":"pmvup51ba","partner":"pmvupvkpr"},{"id":"pmvupcqql","name":"Sharifa","born":"2004","died":"","note":"","parent":"pmvup51ba","partner":null},{"id":"pmvupd1w2","name":"Safura","born":"2007","died":"","note":"","parent":"pmvup51ba","partner":null},{"id":"pmvupdidb","name":"Iqboloy","born":"2011","died":"","note":"","parent":"pmvup51ba","partner":null},{"id":"pmvupduvs","name":"Azamat","born":"1996","died":"","note":"","parent":"pmvup6hya","partner":null},{"id":"pmvupeh4h","name":"Kanibek","born":"1997","died":"","note":"","parent":"pmvup6hya","partner":null},{"id":"pmvupeyrf","name":"Aygul","born":"2004","died":"","note":"","parent":"pmvup6hya","partner":null},{"id":"pmvupfdcj","name":"Ziynat","born":"2002","died":"","note":"","parent":"pmvup7o9z","partner":null},{"id":"pmvupfqg7","name":"Zarifa","born":"2004","died":"","note":"","parent":"pmvup7o9z","partner":null},{"id":"pmvupg7st","name":"Odina","born":"2005","died":"","note":"","parent":"pmvup7o9z","partner":null},{"id":"pmvupgjk6","name":"Abdulaziz","born":"2009","died":"","note":"","parent":"pmvup7o9z","partner":null},{"id":"pmvupgwby","name":"Samandar","born":"2003","died":"","note":"","parent":"pmvup8576","partner":null},{"id":"pmvuph84h","name":"Shoirbek","born":"2006","died":"","note":"","parent":"pmvup8576","partner":null},{"id":"pmvuphjxz","name":"Sohibjon","born":"2010","died":"","note":"","parent":"pmvup8576","partner":null},{"id":"pmvuphwd8","name":"Iskandar","born":"2009","died":"","note":"","parent":"pmvup9c5v","partner":null},{"id":"pmvupibic","name":"Marjona","born":"2012","died":"","note":"","parent":"pmvup9c5v","partner":null},{"id":"pmvupiltk","name":"Jamshid","born":"2016","died":"","note":"","parent":"pmvup9c5v","partner":null},{"id":"pmvupixgg","name":"Marziya","born":"2010","died":"","note":"","parent":"pmvupaazr","partner":null},{"id":"pmvupja34","name":"Isobek","born":"2013","died":"","note":"","parent":"pmvupaazr","partner":null},{"id":"pmvupjvlp","name":"Og'abek","born":"2014","died":"","note":"","parent":"pmvupbgt5","partner":null},{"id":"pmvupkar9","name":"Muxlisa","born":"2018","died":"","note":"","parent":"pmvupbgt5","partner":null},{"id":"pmvupkkkd","name":"Samiya","born":"2026","died":"","note":"","parent":"pmvupkar9","partner":null},{"id":"pmvupn7zi","name":"Rahim","born":"1925","died":"1980","note":"","parent":"pmvupt367","partner":"pmvupo1iq","photo":""},{"id":"pmvupo1iq","name":"Guljamol","born":"1930","died":"2010","note":"","parent":null,"partner":"pmvupn7zi","photo":""},{"id":"pmvupobby","name":"Nasiba","born":"","died":"","note":"","parent":"pmvupo1iq","partner":"pmvupolnj"},{"id":"pmvupolnj","name":"Egamberdi","born":"","died":"","note":"","parent":null,"partner":"pmvupobby"},{"id":"pmvupoxzo","name":"Mahbuba","born":"","died":"","note":"","parent":"pmvupo1iq","partner":"pmvuppqah"},{"id":"pmvuppqah","name":"Sardor","born":"","died":"","note":"","parent":null,"partner":"pmvupoxzo"},{"id":"pmvupq2fq","name":"Nafisa","born":"","died":"","note":"","parent":"pmvupn7zi","partner":"pmvupqh14"},{"id":"pmvupqh14","name":"To'lanboy","born":"","died":"","note":"","parent":null,"partner":"pmvupq2fq"},{"id":"pmvupqteb","name":"Baxtiyor","born":"","died":"","note":"","parent":"pmvupn7zi","partner":"pmvupseck"},{"id":"pmvuprm0j","name":"Nusratillo","born":"","died":"","note":"","parent":"pmvupo1iq","partner":"pmvuprytu"},{"id":"pmvuprytu","name":"Ma'rifat","born":"","died":"","note":"","parent":null,"partner":"pmvuprm0j"},{"id":"pmvupseck","name":"Munavvar","born":"","died":"","note":"","parent":null,"partner":"pmvupqteb"},{"id":"pmvupt367","name":"Xudoyberdi","born":"","died":"","note":"","parent":"pmvuptmez","partner":"pmvupte4y"},{"id":"pmvupte4y","name":"Hadicha","born":"","died":"","note":"","parent":null,"partner":"pmvupt367"},{"id":"pmvuptmez","name":"Xoliq","born":"","died":"","note":"","parent":null,"partner":"pmvupu26n"},{"id":"pmvupu26n","name":"Aydin","born":"","died":"","note":"","parent":null,"partner":"pmvuptmez"},{"id":"pmvupvkpr","name":"Mahmud","born":"1998","died":"","note":"","parent":null,"partner":"pmvupcela","photo":""},{"id":"pmvupvz3l","name":"Madina","born":"2017","died":"","note":"","parent":"pmvupcela","partner":null},{"id":"pmvupw9xd","name":"Safiya","born":"2020","died":"","note":"","parent":"pmvupcela","partner":null,"photo":""},{"id":"pmvupwmv3","name":"Anora","born":"2023","died":"","note":"","parent":"pmvupcela","partner":null,"photo":""},{"id":"pmvupwzyo","name":"Zubair","born":"","died":"","note":"","parent":"pmvupduvs","partner":null},{"id":"pmvxnd3g8","name":"Sadiya","born":"2024","died":"","note":"","photo":"","parent":"pmvupcqql","partner":null}],"photos":[],"tagline":"It is said that our family roots go as far as somewhere near China and Kyrgyzstan","about":"It is said that our family roots go as far as somewhere near China and Kyrgyzstan"}</script>
+<script>
+const DATA=JSON.parse(document.getElementById('data').textContent);
+DATA.photos=DATA.photos||[];
+DATA.tagline=DATA.tagline||'Our family’s story, from our ancestors to the youngest generation.';
+DATA.about=DATA.about||'';
+const $=s=>document.querySelector(s);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const P=id=>DATA.people.find(p=>p.id===id);
+let art=null,canEdit=false;
+const toast=m=>{$('#toast').textContent=m;if(m)setTimeout(()=>{if($('#toast').textContent===m)$('#toast').textContent=''},3500)};
+const yrs=p=>[p.born,p.died].filter(Boolean).join(' – ');
+const hue=s=>{let h=0;for(const c of s||'?')h=(h*31+c.charCodeAt(0))%360;return h};
+const av=(p,n)=>{const a=el('div','av'),h=hue(p.name);a.style.width=a.style.height=n+'px';a.style.fontSize=n/2.6+'px';a.style.boxShadow='0 0 0 3px hsl('+h+',65%,70%)';if(p.photo){const i=el('img');i.src=p.photo;i.alt='';a.append(i)}else{a.textContent=(p.name||'?').trim().charAt(0).toUpperCase();a.style.background='linear-gradient(135deg,hsl('+h+',70%,60%),hsl('+((h+45)%360)+',70%,48%))';a.style.color='#fff'}return a};
+const shrink=(f,max)=>new Promise(res=>{const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.78))};i.src=r.result};r.readAsDataURL(f)});
+const prim=p=>{if(!p.partner)return true;const q=P(p.partner);if(!q)return true;if(p.parent&&!q.parent)return true;if(q.parent&&!p.parent)return false;return DATA.people.indexOf(p)<DATA.people.indexOf(q)};
+const kidsOf=p=>{const q=p.partner&&P(p.partner);return DATA.people.filter(k=>k.parent&&(k.parent===p.id||(q&&k.parent===q.id)))};
+const dep=(p,n=0)=>p.parent&&P(p.parent)&&n<40?dep(P(p.parent),n+1):n;
+const PAGES=[['home','Home'],['tree','Family tree'],['members','Members'],['photos','Photos'],['about','Our story']];
+const route=()=>{const r=(location.hash||'#home').slice(1);return PAGES.some(x=>x[0]===r)?r:'home'};
+
+function treeCard(p){const c=el('div','card');c.style.borderTop='4px solid hsl('+hue(p.name)+',65%,60%)';c.append(av(p,38),el('b',null,p.name));if(yrs(p))c.append(el('div','sub',yrs(p)));c.onclick=()=>openPerson({id:p.id});return c}
+function unit(p){const li=el('li'),u=el('div','unit');u.append(treeCard(p));const q=p.partner&&P(p.partner);if(q)u.append(el('span','amp','&'),treeCard(q));li.append(u);const kids=kidsOf(p).filter(prim);if(kids.length){const ul=el('ul');kids.forEach(k=>ul.append(unit(k)));li.append(ul)}return li}
+function emptyMsg(){const e=el('div','empty','Nobody here yet.');if(canEdit){e.append(el('br'),el('br'));const b=el('button','pri','Add the first person');b.onclick=()=>openPerson({});e.append(b)}return e}
+
+function pgHome(w){
+  const h=el('div','hero');h.append(el('h1',null,DATA.title),el('p',null,DATA.tagline));
+  const a=el('a','btn pri','View family tree');a.href='#tree';const b=el('a','btn','Meet the family');b.href='#members';b.style.marginLeft='8px';h.append(a,b);w.append(h);
+  const gens=DATA.people.length?Math.max(...DATA.people.map(p=>dep(p)))+1:0;
+  const st=el('div','stats');[[DATA.people.length,'family members'],[gens,'generations'],[DATA.photos.length,'photos']].forEach(([n,l])=>{const s=el('div','stat');s.append(el('b',null,n),el('span',null,l));st.append(s)});w.append(st);
+  if(DATA.photos.length){w.append(el('h2','sec','From the album'));const g=el('div','ph');DATA.photos.slice(0,4).forEach((x,i)=>g.append(phFig(x,i)));w.append(g)}
+  if(DATA.about){w.append(el('h2','sec','Our story'));const d=el('div','about');DATA.about.split('\n').filter(Boolean).slice(0,2).forEach(t=>d.append(el('p',null,t)));w.append(d)}
+  if(canEdit){const e=el('button',null,'Edit title & text');e.style.marginTop='20px';e.onclick=openSettings;w.append(e)}
+}
+let zm=1;
+function pgTree(w){w.append(el('h2','sec','Family tree'));const t=el('div','tree'),tb=el('div','row'),lb=el('span','sub',Math.round(zm*100)+'%');tb.style.cssText='margin:0 0 8px;align-items:center';t.style.zoom=zm;const set=v=>{zm=Math.min(2,Math.max(.3,Math.round(v*100)/100));t.style.zoom=zm;lb.textContent=Math.round(zm*100)+'%'};const mk=(l,f)=>{const b=el('button',null,l);b.onclick=f;return b};tb.append(mk('−',()=>set(zm-.15)),lb,mk('+',()=>set(zm+.15)),mk('Reset',()=>set(1)));w.append(tb);const roots=DATA.people.filter(p=>prim(p)&&!p.parent);if(!roots.length)t.append(emptyMsg());else{const ul=el('ul');roots.forEach(r=>ul.append(unit(r)));t.append(ul)}w.append(t);w.append(el('div','sub','Tap a person to see details. Scroll sideways to see the whole tree.'))}
+function pgMembers(w){
+  w.append(el('h2','sec','Family members ('+DATA.people.length+')'));
+  const s=el('input','s');s.className='s';s.placeholder='Search by name…';w.append(s);
+  const g=el('div','grid');w.append(g);
+  const draw=()=>{g.textContent='';const q=s.value.trim().toLowerCase();DATA.people.filter(p=>p.name.toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name)).forEach(p=>{const m=el('div','mem');m.style.borderTop='5px solid hsl('+hue(p.name)+',65%,60%)';m.append(av(p,64),el('b',null,p.name));if(yrs(p))m.append(el('div','sub',yrs(p)));if(p.note)m.append(el('div','sub',p.note));m.onclick=()=>openPerson({id:p.id});g.append(m)});if(!g.children.length)g.append(emptyMsg())};
+  s.oninput=draw;draw();
+  if(canEdit&&DATA.people.length){const b=el('button','pri','+ Add person');b.style.marginTop='16px';b.onclick=()=>openPerson({});w.append(b)}
+}
+function phFig(x,i){const f=el('figure'),im=el('img');im.src=x.src;im.alt=x.cap||'Family photo';f.append(im,el('figcaption',null,x.cap||''));f.onclick=()=>openPhoto(i);return f}
+function pgPhotos(w){
+  w.append(el('h2','sec','Photo album'));
+  if(canEdit){const inp=el('input');inp.type='file';inp.accept='image/*';inp.multiple=true;inp.style.display='none';inp.onchange=async()=>{toast('Processing photos…');for(const f of inp.files)DATA.photos.push({id:'f'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),src:await shrink(f,900),cap:''});if(JSON.stringify(DATA).length>12e6){toast('Too many photos for one page (limit ≈12 MB)');DATA.photos.length=Math.max(0,DATA.photos.length-inp.files.length);return}persist()};const b=el('button','pri','+ Add photos');b.onclick=()=>inp.click();w.append(b,inp)}
+  if(!DATA.photos.length){w.append(el('div','empty','No photos yet.'));return}
+  const g=el('div','ph');g.style.marginTop='14px';DATA.photos.forEach((x,i)=>g.append(phFig(x,i)));w.append(g);
+}
+function pgAbout(w){w.append(el('h2','sec','Our story'));const d=el('div','about');const t=DATA.about.split('\n').filter(Boolean);if(t.length)t.forEach(x=>d.append(el('p',null,x)));else d.append(el('p',null,canEdit?'Write your family’s story here — where you come from, traditions, memories.':'Our family’s story will appear here.'));w.append(d);if(canEdit){const e=el('button','pri','Edit story');e.onclick=openSettings;w.append(e)}}
+
+function render(){
+  const r=route(),app=$('#app');app.textContent='';
+  const nav=el('nav');nav.append(el('span','brand',DATA.title));
+  PAGES.forEach(([k,l])=>{const a=el('a',k===r?'on':'',l);a.href='#'+k;nav.append(a)});
+  const w=el('div','wrap');app.append(nav,w);
+  ({home:pgHome,tree:pgTree,members:pgMembers,photos:pgPhotos,about:pgAbout})[r](w);
+  app.append(el('footer',null,'© '+DATA.title+' family'+(canEdit?' · editing mode':'')));
+  document.title=DATA.title;
+}
+addEventListener('hashchange',()=>{closeD();render();scrollTo(0,0)});
+
+const closeD=()=>{const d=$('#dlg');d.className='';d.textContent=''};
+function dlgBox(build){const d=$('#dlg');d.textContent='';d.className='on';d.onclick=e=>{if(e.target===d)closeD()};const b=el('div','box');d.append(b);build(b)}
+function fld(b,l,v,rows){const lab=el('label',null,l),i=el(rows?'textarea':'input');if(rows)i.rows=rows;i.value=v||'';i.disabled=!canEdit;lab.append(i);b.append(lab);return i}
+function openSettings(){dlgBox(b=>{b.append(el('h2',null,'Site text'));const t=fld(b,'Website name',DATA.title),g=fld(b,'Tagline',DATA.tagline,2),a=fld(b,'Our story (new line = new paragraph)',DATA.about,8);const r=el('div','row'),s=el('button','pri','Save'),c=el('button',null,'Cancel');c.onclick=closeD;s.onclick=()=>{DATA.title=t.value.trim()||DATA.title;DATA.tagline=g.value.trim();DATA.about=a.value.trim();persist()};r.append(s,c);b.append(r)})}
+function openPhoto(i){const x=DATA.photos[i];dlgBox(b=>{const im=el('img','big');im.src=x.src;b.append(im);const c=fld(b,'Caption',x.cap);const r=el('div','row');if(canEdit){const s=el('button','pri','Save caption');s.onclick=()=>{x.cap=c.value.trim();persist()};const d=el('button','del','Delete');let ar=false;d.onclick=()=>{if(!ar){ar=true;d.textContent='Tap again to confirm';return}DATA.photos.splice(i,1);persist()};r.append(s,d)}const cl=el('button',null,'Close');cl.onclick=closeD;r.append(cl);b.append(r)})}
+function openPerson(s){
+  const p=s.id?P(s.id):null;
+  dlgBox(b=>{
+    let pic=p&&p.photo||'';b.style.borderTop='6px solid hsl('+hue(p?p.name:'+')+',65%,60%)';
+    const top=el('div','ptop');let a=av({name:p?p.name:'+',photo:pic},64);top.append(a,el('h2',null,p?p.name:s.partner?'Add partner':s.parent?'Add child':s.above?'Add parent':'Add person'));b.append(top);
+    if(canEdit){const fi=el('input');fi.type='file';fi.accept='image/*';fi.style.display='none';fi.onchange=async()=>{if(!fi.files[0])return;pic=await shrink(fi.files[0],320);const n=av({name:p?p.name:'?',photo:pic},64);a.replaceWith(n);a=n};const pb=el('button',null,'Choose photo');pb.onclick=()=>fi.click();b.append(pb,fi)}
+    const f={name:fld(b,'Full name',p&&p.name),born:fld(b,'Born (year)',p&&p.born),died:fld(b,'Died (year, if any)',p&&p.died),note:fld(b,'Notes / occupation',p&&p.note,3)};
+    if(p){
+      const rel=el('div','rel'),chips=(lab,list)=>{if(!list.length)return;const d=el('div');d.append(el('span','sub',lab+': '));list.forEach(q=>{const c=el('span','chip',q.name);c.onclick=()=>openPerson({id:q.id});d.append(c)});rel.append(d)};
+      chips('Parent',[p.parent&&P(p.parent)].filter(Boolean));chips('Partner',[p.partner&&P(p.partner)].filter(Boolean));chips('Children',kidsOf(p));b.append(rel);
+    }
+    const row=el('div','row'),cl=el('button',null,canEdit?'Cancel':'Close');cl.onclick=closeD;
+    if(canEdit){
+      const sv=el('button','pri','Save');
+      sv.onclick=()=>{const v=k=>f[k].value.trim();if(!v('name')){f.name.focus();return}
+        const vals={name:v('name'),born:v('born'),died:v('died'),note:v('note'),photo:pic};
+        if(p)Object.assign(p,vals);else{const n={id:'p'+Date.now().toString(36),...vals,parent:s.parent||null,partner:s.partner||null};DATA.people.push(n);if(s.partner)P(s.partner).partner=n.id;if(s.above)P(s.above).parent=n.id}
+        persist()};
+      row.append(sv);
+      if(p){
+        if(!p.parent&&prim(p)){const x=el('button',null,'+ Parent');x.onclick=()=>openPerson({above:p.id});row.append(x)}
+        const ac=el('button',null,'+ Child');ac.onclick=()=>openPerson({parent:p.id});row.append(ac);
+        if(!p.partner){const x=el('button',null,'+ Partner');x.onclick=()=>openPerson({partner:p.id});row.append(x)}
+        const dl=el('button','del','Delete');let ar=false;dl.onclick=()=>{if(!ar){ar=true;dl.textContent='Tap again to confirm';return}DATA.people=DATA.people.filter(x=>x!==p);DATA.people.forEach(x=>{if(x.parent===p.id)x.parent=null;if(x.partner===p.id)x.partner=null});persist()};row.append(dl);
+      }
+    }
+    row.append(cl);b.append(row);
+  });
+}
+async function persist(){
+  if(!art)return;toast('Saving…');
+  try{
+    const c=document.documentElement.cloneNode(true);
+    c.querySelector('#data').textContent=JSON.stringify(DATA).replace(/</g,'\\u003c');
+    c.querySelector('#app').textContent='';const d=c.querySelector('#dlg');d.textContent='';d.className='';c.querySelector('#toast').textContent='';
+    await art.publish('<!doctype html>\n'+c.outerHTML);
+  }catch(e){if(e&&e.code==='conflict')return;toast('Couldn’t save — please try again')}
+}
+render();
+(async()=>{try{const u=await window.claude.use('user');if(u&&u.canEdit()){art=await window.claude.use('artifact');canEdit=!!art}}catch(e){}render()})();
+</script>
+
+
+</body></html>
